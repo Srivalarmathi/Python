@@ -1,0 +1,14 @@
+#writing into another file without spaces
+import re
+fin = open("test_med.txt", "rt")
+fout = open("out.txt", "wt")
+
+for line in fin:
+	fout.write(''.join(line.split()))
+
+ 
+   
+   
+    	
+fin.close()
+fout.close()
