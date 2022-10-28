@@ -1,0 +1,53 @@
+import os
+import glob
+import errno
+
+
+from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfFileWriter
+
+
+pdf_file_path = '/content/drive/MyDrive/medical_attach/subset_20129.pdf'
+
+
+
+filelist = glob.glob('/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Emergency_Services/SplitPDF_Output//Food_delivery_attached/*.*')
+
+
+
+
+
+#file_base_name = pdf_file_path.replace('.pdf', '')
+
+#output_folder_path = os.path.join(os.getcwd(), 'Output')
+
+
+#Checking and Printing the current directory
+cwd = os.getcwd()
+print(cwd)
+
+output_folder_path = '/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Emergency_Services/SplitPDF_Output/'
+print(os.path.exists('/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Emergency_Services/'))
+
+file_base_name = 'food_delivery_attachments'
+
+
+#"C:\Users\valarmathi.ganessin\Downloads\Emergency_Services\19252_accepted.pdf"
+
+#for f in range(len(filelist)):
+
+pdf = PdfFileReader("/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Emergency_Services/100612_open.pdf" )
+
+for page_num in range(pdf.numPages):
+
+    pdfWriter = PdfFileWriter()
+
+    pdfWriter.addPage(pdf.getPage(page_num))
+
+
+
+    with open(os.path.join(output_folder_path, '{0}_Page{1}.pdf'.format(file_base_name, page_num+1)), 'wb') as f:
+
+        pdfWriter.write(f)
+
+        f.close()
