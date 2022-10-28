@@ -1,0 +1,10 @@
+import re
+
+textfile = open('test_med.txt', 'r')
+read = textfile.readlines()
+modified =  []
+for line in read:
+    if line not in modified:
+      modified.append(line.strip())  
+
+print(modified)
