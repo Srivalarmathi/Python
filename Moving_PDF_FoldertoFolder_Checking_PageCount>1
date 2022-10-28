@@ -1,0 +1,27 @@
+#Moving PDF files from one folder to another by checking page_Count>1
+import PyPDF2
+import os
+file = open('100493_accepted.pdf', 'rb')
+ 
+ 
+
+source = '/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Attachments'
+destination = '/mnt/batch/tasks/shared/LS_root/mounts/clusters/nlpai/code/Users/valarmathi.ganessin/Attachments/Output'
+ 
+
+ 
+    
+ 
+ 
+# gather all files
+allfiles = os.listdir(source)
+ 
+# iterate on all files to move them to destination folder
+for f in allfiles:
+     readpdf = PyPDF2.PdfFileReader(file)
+     totalpages = readpdf.numPages
+     print(totalpages)
+     if (totalpages>1):
+      src_path = os.path.join(source, f)
+      dst_path = os.path.join(destination, f)
+      os.rename(src_path, dst_path)
