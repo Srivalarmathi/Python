@@ -1,0 +1,12 @@
+import re
+
+textfile = open('test_med.txt', 'r')
+read = textfile.readlines()
+modified =  []
+for line in read:
+    if line[-1]=='\n':
+        modified.append(line[:-1])
+    else:
+        modified.append(line)    
+
+print(modified)
