@@ -1,0 +1,47 @@
+import re
+import nltk
+ 
+nltk.download('punkt') 
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+ 
+example_sent = """ Nature can refer to the general realm of living plants and animals, and in some cases to the processes associated with inanimate objects—the way that particular types of things exist and change of their own accord, such as the weather and geology of the Earth."""
+stop_words = set(stopwords.words('english'))
+
+word_tokens = word_tokenize(example_sent)
+
+
+filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]
+
+filtered_sentence = []
+
+for w in word_tokens:
+	if w not in stop_words:
+		filtered_sentence.append(w)
+        
+
+#print(word_tokens)
+print(filtered_sentence)
+print("********************")
+#replaced_filtered_sentence = filtered_sentence.replace(' " ' , " ")
+#replaced_filtered_sentence = re.split("\s+" , string.strip(filtered_sentence)).replace(' \ " ' , ' ' )
+
+for item in filtered_sentence:
+ print("%s " % item)
+
+print("*********") 
+ 
+#for item in filtered_sentence:
+for item1 in filtered_sentence:
+ c = item1.replace(',', '')
+ print(c) 
+ d = item1.replace('.','')
+
+
+
+print("**************") 
+#for item2 in c:
+ #d = item2.replace('.','')
+ #print(c)
