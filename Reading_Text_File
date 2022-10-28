@@ -1,0 +1,5 @@
+import re
+
+textfile = open('test_med.txt', 'r')
+read = textfile.readlines()
+print(read)
