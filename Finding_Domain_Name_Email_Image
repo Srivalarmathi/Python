@@ -1,0 +1,30 @@
+#Finding the domain name(email) from img using ocr
+#filter for values that are greater than 0.9 prob score for word
+list_9 = []
+value = []
+#i=int(1)
+print(len(list1))
+for i in range(len(list1)):
+       
+      value.append(list1[i][1])
+     # print(value)
+     
+for i in range(len(value)):
+    value_p = value[i] 
+    if value_p > 0.9:
+       list_9.append(list1[i][0])    
+     # value_p = float(value)  
+     # if value_p > 0.9:
+     #    list_9.append(list1[0][0])
+
+print(value) 
+#if list_9 == 'Email Address':    
+print(list_9) 
+
+for line in list_9:
+     emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+",line)
+     domain = re.findall(r"[a-z0-9\.\-+_]+\.[a-z]+",line)
+     if emails != []:
+      print(emails)
+      print("Yes, It occurs",domain)
+         
