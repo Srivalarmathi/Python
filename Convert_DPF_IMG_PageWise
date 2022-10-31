@@ -1,0 +1,6 @@
+!pip install pdf2jpg
+from pdf2jpg import pdf2jpg
+inputpath = r"2807_accepted.pdf"
+outputpath = r"Output"
+result = pdf2jpg.convert_pdf2jpg(inputpath,outputpath, pages="ALL")
+print(result)
