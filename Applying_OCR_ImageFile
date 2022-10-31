@@ -1,0 +1,62 @@
+!python3 -m pip install paddlepaddle
+!pip install "paddleocr>=2.0.1"
+from paddleocr import PaddleOCR
+from paddleocr import draw_ocr
+# Paddleocr supports Chinese, English, French, German, Korean and Japanese.
+# You can set the parameter `lang` as `ch`, `en`, `fr`, `german`, `korean`, `japan`
+# to switch the language model in order.
+ocr = PaddleOCR(use_angle_cls=True, lang='en') # need to run only once to download and load model into memory
+
+
+!python3 -m pip install paddlepaddle
+!pip install "paddleocr>=2.0.1"
+!pip install PyMuPDF 1.9.2
+
+
+
+from paddleocr import PaddleOCR
+from paddleocr import draw_ocr
+# Paddleocr supports Chinese, English, French, German, Korean and Japanese.
+# You can set the parameter `lang` as `ch`, `en`, `fr`, `german`, `korean`, `japan`
+# to switch the language model in order.
+ocr = PaddleOCR(use_angle_cls=True, lang='en') # nee
+
+import paddle
+paddle.utils.run_check()
+paddle.device.cuda.device_count()
+
+import os
+#os.chdir('Users/valarmathi.ganessin/Domain_Check/')
+#import os
+cwd = os.getcwd()
+!ls
+
+from paddleocr import PaddleOCR
+default = '0_2807_accepted.jpg'
+result = ocr.ocr(default, cls=True)
+import re
+#result[0][1][0]
+#print(len(result))
+list1 = [] 
+prob_list = [] 
+for line in range(len(result)):
+    list1.append(result[line][1])
+    prob_list.append(result[line][1][1])
+print(list1)
+print(prob_list)    
+print(list1[0][1])
+
+#Users/valarmathi.ganessin/Domain_Check/Output/2807_accepted_Page1.pdf
+default = '0_2807_accepted.jpg'
+result = ocr.ocr(default, cls=True)
+import re
+#result[0][1][0]
+#print(len(result))
+list1 = [] 
+prob_list = [] 
+for line in range(len(result)):
+    list1.append(result[line][1])
+    prob_list.append(result[line][1][1])
+print(list1)
+print(prob_list)    
+print(list1[0][1])
