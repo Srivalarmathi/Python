@@ -1,0 +1,10 @@
+import re
+textfile = open('out11.txt', 'r')
+read = textfile.readlines()
+results = []
+for line in read:
+     emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+",line)
+     domain = re.findall(r"[a-z0-9\.\-+_]+\.[a-z]+",line)
+     if emails != []:
+      print(emails)
+      print("Yes, It occurs",domain)
