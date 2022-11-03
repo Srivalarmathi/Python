@@ -1,0 +1,29 @@
+#how to get a list of file paths in a folder
+#And read the files from the folder
+#Check for email domain
+import glob
+from glob import glob
+import re
+def_paths = glob(default + '*.jpg')
+print(len(def_paths))
+print(def_paths)
+list= []
+for i in range(len(def_paths)):
+    #print(def_paths[i])
+    list.append(def_paths[i])
+    result = ocr.ocr(def_paths[i], cls=True)
+    for line in range(len(result)):
+        #print(def_paths[i])
+        
+        
+        list.append(result[line][1][0])
+         
+         
+print(list)
+for line in list:
+    
+         emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+",line)
+         domain = re.findall(r"[a-z0-9\.\-+_]+\.[a-z]+",line)
+         if emails != []:
+          print(emails)
+          print("Yes, It occurs",domain)
