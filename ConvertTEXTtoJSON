@@ -1,0 +1,38 @@
+import json
+
+result = []
+with open('log (1).txt', 'r') as f_in:
+    for line in f_in:
+        line = line.strip()
+        if not line:
+            continue  # skip empty lines
+
+        result.append({'text': line})
+
+with open('test1.json', 'w') as f_out:
+    print(json.dumps(result, indent=2))
+    #f_out.write(json.dumps(result, indent=2))
+    
+    
+    
+    
+    
+    
+    #***************************************************
+    
+    
+    
+    import json
+
+result = []
+with open('log (1).txt', 'r') as f_in:
+    for line in f_in:
+        line = line.strip()
+        if not line:
+            continue  # skip empty lines
+
+        result.append({'text': line, 'y': 'a'})
+
+with open('test1.json', 'w') as f_out:
+    print(json.dumps(result, indent=2))
+    #f_out.write(json.dumps(result, indent=2))
