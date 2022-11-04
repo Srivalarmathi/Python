@@ -1,0 +1,12 @@
+#Converting Text file to JSON file
+import itertools
+import json
+
+with open('log (1).txt', 'r') as f_in, open('JSONOutput.json', 'w') as f_out:
+    for text, y in itertools.zip_longest(*[f_in]*2):
+        record = {
+            "text": text.strip()
+            #"y": "a",
+        }
+        f_out.write(json.dumps(record, indent=2))
+        f_out.write(',\n')
