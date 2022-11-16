@@ -1,0 +1,48 @@
+#Getting Directory as a Input and reading all the PDF files and COunting the number of pages in each file
+!pip install requests
+# install lib
+!pip3 install PyPDF2
+!pip show PyPDF2
+import PyPDF2, io, requests
+# Reading and counting the number of files in the directory
+# Checking for PDF files and printing all the PDF files
+import re
+import glob
+import os
+import sys
+import sys
+import re
+import PyPDF2
+from PyPDF2 import PdfWriter 
+from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfFileWriter
+from PyPDF2 import PdfFileMerger
+import requests, PyPDF2, io
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfinterp import resolve1
+ 
+#Checking and Printing the current directory
+cwd = os.getcwd()
+print(cwd)
+ 
+#using listdir we are displaying and counting the number of files in that directory
+filelist = os.listdir()
+print(filelist)
+l = len(filelist)
+print(l)
+
+#Checking for PDF files in that directory
+filenames = [] 
+ 
+for file in os.listdir():
+ if file.endswith("pdf"):
+      
+    f = open(file, 'rb')
+    parser = PDFParser(f)
+    document = PDFDocument(parser)
+
+    # This will give you the count of pages
+    print(f,(resolve1(document.catalog['Pages'])['Count']))
+    
