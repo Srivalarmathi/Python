@@ -16,7 +16,7 @@ def sentence_with_no_phrases(keyword, document):
 
 Genuine_cust = []
 
-with open('Emergency_Services_appealbox.jsonl') as f:
+with open('Sample.jsonl') as f:
         datas = [json.loads(line) for line in f]
         # print(data[0])
 print('hello')
@@ -51,5 +51,5 @@ dict = {
 json_object = json.dumps(dict, indent=4)
 
     # Writing to sample.json
-with open("emergency_cus.json", "w") as outfile:
+with open("withoutphrases.json", "w") as outfile:
         outfile.write(json_object)
