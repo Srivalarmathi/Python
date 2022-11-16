@@ -1,0 +1,85 @@
+#Extracting the sentance with phrases and without phrases
+!pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
+!pip install pyresparser
+import spacy
+nlp = spacy.load("en_core_web_sm")
+import re 
+import time
+from spacy.matcher import PhraseMatcher
+
+import json
+
+import spacy
+import re 
+import time
+from spacy.matcher import PhraseMatcher
+
+import json
+
+
+def find_sentences_with_keyword(keyword, document):
+    
+    #Iterate through all the sentences in the document and pull out the text of each sentence
+    for sentence in document.sents:
+        sentence = sentence.text
+        #Check to see if the keyword is in the sentence (and ignore capitalization by making both lowercase)
+        if keyword.lower() in sentence.lower():
+            
+            #Use the regex library to replace linebreaks and to make the keyword bolded, again ignoring capitalization
+            sentence = re.sub('\n', ' ', sentence)
+            sentence = re.sub(f"{keyword}", f"**{keyword}**", sentence, flags=re.IGNORECASE)
+            # print(sentence)
+            # print("done spacy")
+            # time.sleep(5000)
+            return sentence
+            # display(Markdown(sentence))
+
+            
+
+
+if __name__ == "__main__":
+
+    Genuine_cust = []
+
+    with open('Sample_File.jsonl') as f:
+        datas = [json.loads(line) for line in f]
+        # print(data[0])
+    print('hello')
+    nlp = spacy.load('en_core_web_sm')
+
+    phrase_matcher = PhraseMatcher(nlp.vocab)
+
+    phrases = ['phrase1','phrase2','phrase3']
+
+    patterns = [nlp(text) for text in phrases]
+
+    phrase_matcher.add('Genuine customer', None, *patterns)
+
+    for data in datas:
+        string = str(data.values())
+        # print(str(aa))
+        sentence = nlp(string)
+        # print(sentence)
+        matched_phrases = phrase_matcher(sentence)
+
+        for word in phrases:
+            genuine_cust = find_sentences_with_keyword(keyword=word, document=sentence)
+            if genuine_cust is not None:
+                Genuine_cust.append(genuine_cust)
+
+    # print(Genuine_cust)
+    dict = {
+        'Genuine_customer':Genuine_cust
+    }
+
+    # Serializing json
+    json_object = json.dumps(dict, indent=4)
+
+    # Writing to sample.json
+    with open("genuine_cus.json", "w") as outfile:
+        outfile.write(json_object)
+
+
+
+
+
