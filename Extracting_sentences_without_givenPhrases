@@ -1,0 +1,55 @@
+#working python script to find out the sentence without phrases
+import spacy
+import re 
+import time
+from spacy.matcher import PhraseMatcher
+
+import json
+def sentence_with_no_phrases(keyword, document):
+    for sentence in document.sents:
+        sentence = sentence.text
+        if keyword.lower() not in sentence.lower():
+            sentence = re.sub('\n','',sentence)
+            sentence = re.sub(f"{keyword}", f"**{keyword}**",sentence, flags=re.IGNORECASE)  
+            return sentence         
+ 
+
+Genuine_cust = []
+
+with open('Emergency_Services_appealbox.jsonl') as f:
+        datas = [json.loads(line) for line in f]
+        # print(data[0])
+print('hello')
+nlp = spacy.load('en_core_web_sm')
+
+phrase_matcher = PhraseMatcher(nlp.vocab)
+
+phrases = [' to appologies for', '  get alone drive', ' alone drive',' pulled over', 'we visited', ' went shopping at', 'i visited', 'went to gym', 'shopping in ','been shopping to','shopping as','we were shopping','Attaching receipts','attached receipts','i went to both', 'im a customer', 'i was a customer','i went into','I have receipts','went to','shopping centre', 'spending money','i am a member',' i visited', 'i was visiting', 'staying at']
+
+patterns = [nlp(text) for text in phrases]
+
+phrase_matcher.add('Genuine customer', None, *patterns)
+
+for data in datas:
+        string = str(data.values())
+        # print(str(aa))
+        sentence = nlp(string)
+        # print(sentence)
+        matched_phrases = phrase_matcher(sentence)
+
+        for word in phrases:
+            genuine_cust = sentence_with_no_phrases(keyword=word, document=sentence)
+            if genuine_cust is not None:
+                Genuine_cust.append(genuine_cust)
+
+    # print(Genuine_cust)
+dict = {
+        'Genuine_customer':Genuine_cust
+    }
+
+    # Serializing json
+json_object = json.dumps(dict, indent=4)
+
+    # Writing to sample.json
+with open("emergency_cus.json", "w") as outfile:
+        outfile.write(json_object)
