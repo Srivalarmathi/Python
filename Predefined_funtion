@@ -1,0 +1,7 @@
+In the command_prompt
+move to the directory where do we want to do the following
+delete,merging split, sort etc
+"python -m pip install sg-pdfparser"
+displays the choice 1,2,3,4
+then proceed
+filename 
