@@ -1,0 +1,67 @@
+
+#Getting folder as an input and get all the pdf's from it and split page by pafe and save it as different files in another folder
+#PDF FIles merged in one single file 
+!pip install requests
+import os
+ 
+from PyPDF2 import PdfFileReader, PdfFileWriter
+# install lib
+!pip3 install PyPDF2
+!pip show PyPDF2
+
+import PyPDF2
+import shutil
+import PyPDF2, io, requests
+# Reading and counting the number of files in the directory
+# Checking for PDF files and printing all the PDF files
+import re
+import glob
+import os
+import sys
+import sys
+import re
+import PyPDF2
+from PyPDF2 import PdfWriter 
+from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfFileWriter
+from PyPDF2 import PdfFileMerger
+import requests, PyPDF2, io
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfinterp import resolve1
+from PyPDF2 import PdfFileReader, PdfFileWriter
+
+ 
+
+#Checking and Printing the current directory
+cwd = os.getcwd()
+print(cwd)
+
+#using listdir we are displaying and counting the number of files in that directory
+filelist = os.listdir()
+print(filelist)
+l = len(filelist)
+print(l)
+
+#Checking for PDF files in that directory
+filenames = [] 
+
+for file in filelist:
+ if file.endswith("pdf"):
+
+     
+  file_base_name = file.replace('.pdf','')
+  output_folder_path = os.path.join(os.getcwd(),'Output')
+  pdf = PdfFileReader(file)
+
+  for page_num in range(pdf.numPages):
+    pdfWriter = PdfFileWriter()
+    pdfWriter.addPage(pdf.getPage(page_num))
+
+    with open(os.path.join(output_folder_path,'{0}_Page{1}.pdf'.format(file_base_name, page_num+1)), 'wb') as f:
+
+      pdfWriter.write(f)
+      print(f)
+      
+      f.close()
