@@ -1,0 +1,19 @@
+#Delete the first page of pdf file and save it as another PDFFile
+from PyPDF2 import PdfFileReader,PdfFileWriter
+cwd = os.getcwd()
+print(cwd)
+ 
+def delete_pages_pdffile(inPdfFileName,outPdfFileName,numberPages):
+    pdfWriter = PdfFileWriter()
+    pdfReader = PdfFileReader(inPdfFileName)
+    for i in range(pdfReader.getNumPages()):
+        if i not in numberPages:
+         page = pdfReader.getPage(i)
+         pdfWriter.addPage(page)
+    with open(outPdfFileName,'wb') as outpdf:
+        pdfWriter.write(outpdf)
+inPdfFileName ="100481_rejected.pdf"
+outPdfFileName = "Second_100286_rejected.pdf"
+numberPages = (0,0)
+delete_pages_pdffile(inPdfFileName,outPdfFileName,numberPages)
+
